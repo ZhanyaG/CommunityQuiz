@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Creative Quiz - Welcome</title>
+  <link rel="stylesheet" href="style1.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Creative Type Quiz</h1>
+    <p>This quiz helps you reflect on how you work best as a creative.</p>
+    <button onclick="startQuiz()">Start Quiz</button>
+  </div>
+
+  <script>
+    function startQuiz() {
+      localStorage.clear();
+      window.location.href = "page1.html";
+    }
+  </script>
+</body>
+</html>

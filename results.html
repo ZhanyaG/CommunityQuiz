@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Your Creative Type</title>
+  <link rel="stylesheet" href="style1.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Your Result</h1>
+    <p id="resultText"></p>
+    <p>Thank you for taking the quiz! 🌿</p>
+    <button onclick="restart()">Start Over</button>
+  </div>
+
+  <script>
+    const answers = JSON.parse(localStorage.getItem("answers")) || [];
+    const countA = answers.filter(a => a === 'A').length;
+    const countB = answers.filter(a => a === 'B').length;
+
+    let result = "";
+
+    if (countA > countB) {
+      result = "You’re a grounded, hands-on creative who finds meaning in slow, thoughtful creation.";
+    } else {
+      result = "You’re a digital explorer who moves fast, loves tools, trends, and internet culture!";
+    }
+
+    document.getElementById("resultText").textContent = result;
+
+    function restart() {
+      localStorage.clear();
+      window.location.href = "index1.html";
+    }
+  </script>
+</body>
+</html>
