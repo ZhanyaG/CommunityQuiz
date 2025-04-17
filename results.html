@@ -9,34 +9,48 @@
 <body>
   <div class="container">
     <h1>Your Result</h1>
-    <p id="resultText"></p>
+    <div id="resultText"></div>
     <p>Thanks for taking the quiz! ✨</p>
     <button onclick="restart()">Start Over</button>
   </div>
 
   <script>
-    // Get the answers from localStorage
     const answers = JSON.parse(localStorage.getItem("answers")) || [];
-
-    // Count how many A's and B's
     const countA = answers.filter(a => a === 'A').length;
     const countB = answers.filter(a => a === 'B').length;
 
-    // Generate result text
-    let result = "";
+    let resultHTML = "";
+
     if (countA > countB) {
-      result = "You’re a grounded, hands-on creative who finds meaning in slow, thoughtful creation.";
+      // Grounded, hands-on creative
+      resultHTML = `
+        <p><strong>You’re a grounded, hands-on creative who finds meaning in slow, thoughtful creation.</strong></p>
+        <p style="font-weight: normal;">
+          You value deep work and personal expression. Whether it’s painting, journaling, building, or sketching—you love to take your time and enjoy the process. You're inspired by real-world textures, materials, and quiet moments.
+        </p>
+        <img src="WebPic1.png" alt="Grounded Creative Image" style="max-width: 100%; margin: 20px 0; border-radius: 10px;">
+        <p style="font-style: italic; color: #555;">💡 Tip: Make time for creative rituals. Even 15 minutes of quiet, focused making can recharge your energy and spark ideas.</p>
+      `;
     } else {
-      result = "You’re a digital explorer who moves fast, loves tools, trends, and internet culture!";
+      // Digital, fast-moving creative
+      resultHTML = `
+        <p><strong>You’re a fast-moving digital explorer who thrives on trends and energy!</strong></p>
+        <p style="font-weight: normal;">
+          You create at the speed of the internet. You're inspired by memes, TikToks, cool tools, and scrolling through ideas. You move fast, remix often, and bring energy into everything you make. You probably have 8 tabs open—and love it that way.
+        </p>
+        <img src="WebPic2.png" alt="Digital Explorer Image" style="max-width: 100%; margin: 20px 0; border-radius: 10px;">
+        <p style="font-style: italic; color: #555;">💡 Tip: Set a 30-minute "create, don’t scroll" timer. Use that time to make something quick without worrying if it’s perfect—then share it boldly!</p>
+      `;
     }
 
-    // Display result + score
-    document.getElementById("resultText").innerHTML = `
-      ${result} <br><br>
-      <strong>Score:</strong> ${countA} A's and ${countB} B's
+    // Add score at the bottom
+    resultHTML += `
+      <p><strong>Score:</strong> ${countA} A's and ${countB} B's</p>
     `;
 
-    // Restart button
+    // Show final content
+    document.getElementById("resultText").innerHTML = resultHTML;
+
     function restart() {
       localStorage.clear();
       window.location.href = "index.html";
